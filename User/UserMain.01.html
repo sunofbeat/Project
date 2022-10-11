@@ -7,7 +7,8 @@
 <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js'></script>
 <link rel='stylesheet' href='http://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'/>
 <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.6.3/css/all.css'/>
-<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css'>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css'/>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css'/>
 </head>
 <style>
     .bi-list {
@@ -32,70 +33,93 @@
     #body-content {
         display: flex;
         margin-top: 100px;
-        padding-bottom: 999px; 
+        padding-bottom: 99999px; 
     }
     
     footer {
         width: 100%;
         height: 60px;
         position: fixed;
-        bottom: -50;
+        bottom: -31;
         left: 0;
+    }
+
+    #footerBtn {
+        border: none;
     }
 
 </style>
 <body>
-<hr>
 <div class='container'>
     <div class='row'> 
-        <div class='col'>            
-            <header class='shadow p-4 mb-4 bg-white'>                
-                <h1 class='text-center'>제목 and 커플사진</h1>
+        <div class="col w-auto p-3">            
+            <header class='shadow p-4 mb-4 bg-white'>        
+               <figure>
+                    <img src='../img/main.jpg' class='img-fluid' style="max-width: 100%; height: auto;"/><h3>데이트제목</h3>
+                    
+               </figure>                                         
             </header>                 
         </div>        
     </div>
-    <hr>
+
     <div class='row-2 ml-3'>  
-        <h5>지역선택</h5><hr>
+        <h5>지역선택</h5>
         <div class='mb-2'>
-            <form>
-                <label for='city'>서울</label>
-                <select id='city'>
-                    <option>광진,성동</option>
-                    <option>관악,영등포</option>
-                    <option>등등등</option>
-                </select>
-            </form>
-            <form>
-                <label for='city'>경기</label>
-                <select id='city'>
-                    <option>남양주</option>
-                    <option>땡땡땡</option>
-                    <option>등등등</option>
-                </select>
-            </form>
-            <form>
-                <label for='city'>인천</label>
-                <select id='city'>
-                    <option>광진,성동</option>
-                    <option>관악,영등포</option>
-                    <option>등등등</option>
-                </select>
+            <form id='city'>
+                <label for='city'>서울
+                    <select>
+                        <option>강남,서초</option>
+                        <option>송파,강동</option>
+                        <option>광진,성동</option>
+                    </select>
+                </label>
+                <label for='city'>경기
+                    <select>
+                        <option>수원</option>
+                        <option>분당</option>
+                        <option>남양주</option>
+                    </select>
+                </label><br>
+                <label for='city'>인천
+                    <select>
+                        <option>부평</option>
+                        <option>구월</option>
+                        <option>계양</option>
+                    </select>
+                </label>
+                <label>타지역 준비중</label>
             </form>
         </div>
     </div><hr>
-    <div>
-        <section
+    <div class='row-2 ml-3'>
+        <section>
+            <h5>데이트 컨셉</h5>
+            <div class="w-auto p-3" style="background-color: #eee;">
+                <aside class="col-md-4 col-lg-4 col-sm-4">
+                    <figure class='figure'>                        
+                        <img src='../img/btnCouple.jpg' class='img-fluid rounded' 
+                                style="width: 100; height: 100;" valign="absmiddle"/>                                
+                                <div class="centered">커플</div>
+                            </div>                                                
+                    </figure>
+                </aside>
+            </div>
+        </section>
     </div>
-    <div>
-        <footer class='footer jumbotron p-2'>
-            <button type='btn'  style='border:none'><i class="bi bi-house-door-fill"></i></button>
-            <button type='btn'  style='border:none'><i class="bi bi-search mx-4"></i></button> 
-            <button type='btn'  style='border:none'><i class="bi bi-cursor-fill mx-2"></i></button> 
-            <button type='btn'  style='border:none'><i class="bi bi-heart-fill mx-4"></i></button>   
-            <button type='btn'  style='border:none'><i class="bi bi-person-circle mx-3"></i></button>
+    <div class='col'>
+        <footer id='footerBtn' class='jumbotron p-1'>
+            <button class='btn w-auto p-4' type='button'>
+                <i class="bi bi-house-door-fill"></i></button>
+            <button class='btn w-auto p-4' type='button'>
+                <i class="bi bi-search"></i></button>
+            <button class='btn w-auto p-4' type='button'>
+                <i class="bi bi-cursor-fill"></i></button>
+            <button class='btn w-auto p-4' type='button'>
+                <i class="bi bi-heart-fill"></i></button>
+            <button class='btn w-auto p-4' type='button'>
+                <i class="bi bi-person-circle"></i></button>
+            </button>
         </footer>
     </div>
 </div>
-
 </body>
