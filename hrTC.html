@@ -9,7 +9,7 @@ $(() => {
     } 
     let sort = (a, b) => b - a
     
-    //if($('tbody').length()) table.append('<tr><td colspan="4" class="text-center">노동자가 없습니다.</td></tr>')
+    //if($('tbody').length()) table.append('<tr><td colspan='4' class='text-center'>노동자가 없습니다.</td></tr>')
      
         
         $('#addbtn').click(() => {
@@ -23,7 +23,7 @@ $(() => {
                 
             }else{
             
-            $('<tr><td>'+ '<input type="radio"/>' + '</td>' +
+            $('<tr><td>'+ '<input type='radio'/>' + '</td>' +
                     '<td>'+ `${idCnt++}` +'</td>' + 
                     '<td>' + $('#inputText').val() + '</td>' +
                     '<td>' + $('#inputDate').val() + '</td></tr>').appendTo('tbody'),
