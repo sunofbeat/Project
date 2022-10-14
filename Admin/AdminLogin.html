@@ -8,7 +8,12 @@
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css'/>
 </head>
 <style>
-
+    #centerPosition {
+        margin-top: 20rem;
+        top: 50%;
+        left: 50%;
+        padding: 5px;
+    }
 </style>
 <body>
 <div class='container'>
@@ -17,7 +22,7 @@
             <h1 class='text-center'>LOGO</h1>
         </header>
     </div><hr>
-    <div class='row-2'>
+    <div id='centerPosition' class='row-2'>
         <div class='d-grid col-6 mx-auto'>        
             <div class='input-group'>
                 <span class='input-group-text'><i class='bi bi-person-fill'></i></span>
@@ -29,7 +34,7 @@
                 <input type='password' class='form-control' placeholder='password' 
                     aria-label='password' aria-describedby='addon-wrapping'>
             </div>
-            <button type='submit' class='btn btn-primary btn-lg mt-1'>로그인</button>
+            <a href='#'><button type='submit' class='btn btn-primary btn-lg col-12 mt-1'>로그인</button></a>
         </div>         
     </div>    
 </div>
