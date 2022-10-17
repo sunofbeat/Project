@@ -1,0 +1,194 @@
+<head>
+<title>데이트</title>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js'></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js'></script>
+<link rel='stylesheet' href='http://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'/>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css'/>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.6.3/css/all.css'/>
+<style>
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .word-keep {
+        word-break: keep-all;
+    }
+
+    .mt-80 {
+        margin-top: 80px;
+    }
+
+    .fixed-bottom .bi {
+        font-size: 48px;
+    }
+
+    .icon {
+        font-size: 24px;
+    }
+
+    .list-style-none {
+        list-style: none;
+    }
+
+    .font-gamja-flower {
+        font-family: 'Gamja Flower', cursive;
+        font-size: 2rem;
+    }
+
+    form {
+        height: 5;
+        width: 5;
+    }
+
+</style>
+</head>
+<body>
+    <div class='container'>
+        <header class='row w-auto p-3 bg-white fixed-top shadow'>
+            <div class='col'>
+                <h4 class='text-center'>LOGO</h4>
+            </div>
+        </header>
+        <div class='row-1 mt-1'>
+            <div class='col'>
+            <div class='navbar navbar-light bg-light'>                 
+                <h3>지역선택</h3>
+            </div>
+            <div class='navbar navbar-expand navbar-light bg-light'>                     
+                    <div class='collapse navbar-collapse'>                       
+                        <ul class='navbar-nav'>
+                            <li class='nav-item dropdown'>
+                                <a href='#' class='nav-link dropdown-toggle' data-toggle='dropdown'>
+                                    <span class='caret'>서울</span></a>
+                                <ul class='dropdown-menu'>
+                                    <li><a href='#' class='dropdown-item'>강남,서초</a></li>
+                                    <li><a href='#' class='dropdown-item'>송파,강동</a></li>
+                                    <li><a href='#' class='dropdown-item'>광진,성동</a></li>
+                                </ul>
+                            </li>
+                            <li class='nav-item dropdown'>
+                                <a href='#' class='nav-link dropdown-toggle' data-toggle='dropdown'>
+                                    <span class='caret'>경기</span></a>
+                                <ul class='dropdown-menu'>
+                                    <li><a href='#' class='dropdown-item'>수원</a></li>
+                                    <li><a href='#' class='dropdown-item'>남양주</a></li>
+                                    <li><a href='#' class='dropdown-item'>시흥</a></li>
+                                </ul>
+                            </li>
+                            <li class='nav-item dropdown'>
+                                <a href='#' class='nav-link dropdown-toggle' data-toggle='dropdown'>
+                                    <span class='caret'>인천</span></a>
+                                <ul class='dropdown-menu'>
+                                    <li><a href='#' class='dropdown-item'>계양</a></li>
+                                    <li><a href='#' class='dropdown-item'>남동</a></li>                                    
+                                </ul>
+                            </li>
+                            <li>
+                                <p class='nav-link'>타지역 준비중</p>                                
+                            </li>
+                        </ul>
+                    </div> 
+                            
+            </div>
+        </div>
+        </div>
+        <div class='row-1 mt-4'>
+            <h3>추천, 광고</h4>
+            <div class='col'>
+                    <div id='imgCarousel' class='carousel slide' data-ride='carousel' data-interval='4000'>
+                    <div class='carousel-inner'>
+                        <div class='carousel-item active'>
+                            <a href='#'><img src='https://picsum.photos/id/1/400/300'/></a>
+                        </div>
+                        <div class='carousel-item'>
+                            <a href='#'><img src='https://picsum.photos/id/1000/400/300'/></a>
+                        </div>                    
+                    </div>
+                    <a href='#imgCarousel' class='carousel-control-prev' data-slide='prev'>
+                        <span class='carousel-control-prev-icon'></span>
+                    </a>
+                    <a href='#imgCarousel' class='carousel-control-next' data-slide='next'>
+                        <span class='carousel-control-next-icon'></span>
+                    </a>
+                    <ol class='carousel-indicators mx-auto'>
+                        <li data-target='#imgCarousel' data-slide-to='0' class='active'></li>
+                        <li data-target='#imgCarousel' data-slide-to='1'></li>                
+                    </ol>
+                    </div>
+            </div>
+            <div class='col mt-2'>
+                <div id='imgCarousel2' class='carousel slide' data-ride='carousel' data-interval='3000'>
+                    <div class='carousel-inner'>                   
+                        <div class='carousel-item'>
+                            <a href='#'><img src='https://picsum.photos/id/1/400/300'/></a>
+                        </div>
+                        <div class='carousel-item active'>
+                            <a href='#'><img src='https://picsum.photos/id/1000/400/300'/></a>           
+                        </div>                    
+                    </div>
+                    <a href='#imgCarousel2' class='carousel-control-prev' data-slide='prev'>
+                        <span class='carousel-control-prev-icon'></span>
+                    </a>
+                    <a href='#imgCarousel2' class='carousel-control-next' data-slide='next'>
+                        <span class='carousel-control-next-icon'></span>
+                    </a>
+                    <ol class='carousel-indicators mx-auto'>
+                        <li data-target='#imgCarousel' data-slide-to='0' class='active'></li>
+                        <li data-target='#imgCarousel' data-slide-to='1'></li>                
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class='jumbotron mx-auto mb-4'>
+            <h5 class='text-center'>
+                (주)WS데이트(대표 장우성)<br>
+                사업자 등록번호 111-22-33333<br>
+                대표전화: 070-5555-2222<br>
+                제휴/문의: wsdate@wsdate.com<br>
+                서울 관악구 자바32로 스프링1길, 오라클빌딩 301호
+            </h5>
+        </div>
+        <div class="navbar">
+            <ul
+                class="navbar nav-item bg-light fixed-bottom mb-0 list-style-none"
+            >
+                <li>
+                    <a href="Main.html" class="btn w-auto" type="button">
+                        <i class="icon bi-house-door-fill fa-3x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="btn w-auto" type="button">
+                        <i class="icon bi-file-earmark-text fa-3x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="btn w-auto" type="button">
+                        <i class="icon bi-map fa-3x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="btn w-auto" type="button">
+                        <i class="icon bi-heart fa-3x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="02.html"
+                        class="btn w-auto"
+                        type="button"
+                    >
+                        <i class="icon bi-person-circle fa-3x"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
