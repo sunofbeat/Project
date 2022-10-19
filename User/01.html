@@ -43,6 +43,10 @@
                 font-size: 16px;
             }
 
+            .pt-62 {
+                padding-top: 62px;
+            }
+
             .icon {
                 font-size: 24px;
             }
@@ -71,17 +75,17 @@
     <body>
         <div class="container">
             <header>
-                <nav class="row navbar bg-light text-center align-middle">
-                    <a href="javascript:window.history.back();" class="col btn"
-                        ><i class="bi bi-chevron-left"></i
-                    ></a>
+                <nav class="row navbar bg-light text-center align-middle fixed-top">
+                    <a href="javascript:window.history.back();" class="col btn">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
                     <p class="col"></p>
                     <h3 class="col-6 font-gamja-flower">회원가입</h3>
                     <p class="col"></p>
                     <p class="col"></p>
                 </nav>
             </header>
-            <div class="row">
+            <div class="row pt-62">
                 <form action="./02.html" class="d-grid col-11 mx-auto">
                     <div class="input-group mb-2">
                         <input
@@ -92,7 +96,14 @@
                             aria-describedby="addon-wrapping"
                             autofocus
                         />
-                        <button class="col-3 border-0 rounded">중복확인</button>
+                        <button 
+                            type="button" 
+                            class="col-3 border-0 rounded"
+                            data-toggle="modal"
+                            data-target="#checkModal"
+                        >
+                            중복확인
+                        </button>
                     </div>
                     <div class="input-group mb-2">
                         <input
@@ -102,7 +113,14 @@
                             aria-label="auth"
                             aria-describedby="addon-wrapping"
                         />
-                        <button class="col-3 border-0 rounded">확인</button>
+                        <button 
+                            type="button" 
+                            class="col-3 border-0 rounded"
+                            data-toggle="modal"
+                            data-target="#assignModal"
+                        >
+                            확인
+                        </button>
                     </div>
                     <div class="input-group mb-2">
                         <input
@@ -133,9 +151,9 @@
                     </div>
                     <div class="input-group mb-2">
                         <input
-                            type="number"
-                            class="form-control"
-                            placeholder="전화번호"
+                            type="tel"
+                            class="form-control userCellNum"
+                            placeholder="전화번호(&#39;-&#39;&nbsp;제외)"
                             aria-label="phone"
                             aria-describedby="addon-wrapping"
                         />
@@ -187,6 +205,40 @@
                         </a>
                     </li>
                 </ul>
+            </div>
+        </div>
+        <div class="modal" id="checkModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content mx-5">
+                    <div class="modal-body text-center py-3">
+                        <p>이미 사용중인 이메일입니다.</p>
+                        <p>인증번호를 이메일로 전송했습니다. <br/>이메일을 확인해 주세요.</p>
+                        <a
+                            href="#"
+                            class="btn btn-primary"
+                            data-dismiss="modal"
+                        >
+                            확인
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="assignModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content mx-5">
+                    <div class="modal-body text-center py-3">
+                        <p>인증번호가 틀렸습니다. <br/>다시 확인해주세요.</p>
+                        <p>인증을 완료했습니다.</p>
+                        <a
+                            href="#"
+                            class="btn btn-primary"
+                            data-dismiss="modal"
+                        >
+                            확인
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </body>

@@ -1,14 +1,97 @@
+<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+<script>
+
+    function listUsers() {
+        $('input').not(':radio').val('')
+        $('#users').empty()
+
+        if(users.length) {
+            const userArr = [] //rendering을 위해서 배열을선언
+
+            $.each(users, (i, user) => {
+                userArr.unshift(//내림차순
+                    `<tr>                        
+                        <td><input type='radio' name='laborerId' id='laborerId'
+                                value='${user.userId}'/></td>                        
+                        <td>${user.userId}</td>
+                        <td>${user.userName}</td>
+                        <td>${user.userNick}</td>
+                        <td>${user.userTel}</td>
+                        <td>${user.userEmail}</td>
+                        <td>${user.userBirth}</td>
+                    </tr>`
+                )     
+            })
+
+            $('#users').append(userArr.join(''))
+                    
+        } else $('#users').append(
+            '<tr><td colspan=4 class=text-center>회원이 없습니다.</td></tr>')
+    }
+
+    function init() {
+        //수정
+        $('#fixBtn').click(() => {
+            if(isVal($('#userId:checked')) &&
+                isVal($('#laborerName')) && isVal($('#hireDate'))) {
+                    let laborerId = $('#laborerId:checked').val()
+
+                    $.each(laborers, (i, laborer) => {
+                        if(laborer.laborerId == laborerId) {
+                            laborer.name = $('#laborerName').val()
+                            laborer.hireDate = $('#hireDate').val()
+                            return false
+                        }
+                    })
+                    listLaborers()
+            }
+        })
+
+        //삭제
+        $('#delBtn').click(() => {
+            if(isVal($('#laborerId:checked'))){
+                $('#modalMsg').text('노동자를 삭제하시겠습니까?')
+                $('#modalBtn').show()
+                $('#modal').modal()
+            }
+        })
+
+        $('#delLaborerOkBtn').click(() => {
+            let laborerId = $('#laborerId:checked').val()
+
+            $.each(laborers, (i, laborer) => {
+                if(laborer.laborerId == laborerId) {
+                    laborers.splice(i, 1)
+                    return false
+                }
+            })
+
+            $('#modal').modal('hide')
+            listLaborers()
+        })
+
+        $('#users').on({
+            change() {
+                $('#userName').val($(this).parent().siblings().eq(2).text())
+                $('#userNick').val($(this).parent().siblings().eq(3).text())
+                $('#userTel').val($(this).parent().siblings().eq(4).text())
+                $('#userEmail').val($(this).parent().siblings().eq(5).text()) 
+                $('#userBirth').val($(this).parent().siblings().eq(6).text())                
+            }
+        })
+    }
+
+    $(init)
+
+</script>
 <head>
-<title>adminMain</title>
+<title>DateAdmin</title>
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js'></script>
 <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js'></script>
 <link rel='stylesheet' href='http://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'/>
 <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.6.3/css/all.css'/>
-<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css'>
-<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css'/>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css'/>
 </head>
 <style>
@@ -21,7 +104,7 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 20%;
+    width: 15%;
     background-color: #f1f1f1;
     position: fixed;
     height: 100%;
@@ -55,7 +138,7 @@ li a:hover:not(.active) {
     </header>
     <hr>
     <div class='row'>  
-        <div class='col-3'>          
+        <div class='col-2'>          
             <ul class="text-center">                   
                 <li><a href="../Admin/Main.html">회원 조회</a></li>
                 <li><a href="../Admin/Declaration.html">신고 조회</a></li>
@@ -71,32 +154,35 @@ li a:hover:not(.active) {
                     </div>                        
                     <div class='col mb-2'>
                         <div class='button'>
-                            <button type='button' class='btn btn-success btn-lg col-3 mr-4'>
-                                <span class='label'>조회</span>
+                            <button type='button' class='btn btn-primary col-3 mr-4'>
+                               조회
                             </button>
-                            <button type='button' class='btn btn-info btn-lg col-3 mr-4'
+                            <button id='fixBtn' type='button' class='btn btn-warning col-3 mr-4'
                                     data-toggle='modal' data-target='#fixModal'>
-                                <span class='label'>선택 수정</span>
+                               선택 수정
                             </button>
-                            <button type='button' class='btn btn-danger btn-lg col-3 btn-lg'
+                            <button id='delBtn' type='button' class='btn btn-danger col-3'
                                     data-toggle='modal' data-target='#delModal'>
-                                <span class='label'>선택 탈퇴</span>
+                               선택 탈퇴
                             </button>
                         </div>
                     </div>
                 </div>
                 <div class='row'>
-                    <div class='col-3'>
-                        <input type='text' class='form-control' placeholder='이름'/>
+                    <div class='col'>
+                        <input id='userName' type='text' class='form-control' placeholder='이름'/>
                     </div>
-                    <div class='col-3'>
-                        <input type='tel' class='form-control' placeholder='전화번호'/>
+                    <div class='col'>
+                        <input id='userNick' type='text' class='form-control' placeholder='닉네임'/>
                     </div>
-                    <div class='col-3'>                            
-                        <input type='email' class='form-control' placeholder='이메일'/>
+                    <div class='col'>
+                        <input id='userTel' type='tel' class='form-control' placeholder='전화번호'/>
                     </div>
-                    <div class='col-3'>
-                        <input type='datetime' class='form-control' placeholder='생년월일'/>
+                    <div class='col'>                            
+                        <input id='userEmail' type='email' class='form-control' placeholder='이메일'/>
+                    </div>
+                    <div class='col'>
+                        <input id='userBirth' type='datetime' class='form-control' placeholder='생년월일'/>
                     </div>      
                 </div>       
                 <table class='table mt-3'>
@@ -105,16 +191,18 @@ li a:hover:not(.active) {
                             <th></th>
                             <th>번호</th>
                             <th>이름</th>
+                            <th>닉네임</th>
                             <th>전화번호</th>
                             <th>이메일</th>
-                            <th>입사일</th>
+                            <th>생년월일</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id='users'>
                         <tr>
                             <td><input type='radio' class='radio'></td>
                             <td>1</td>
                             <td>최한석</td>
+                            <td>하루000</td>
                             <td>010-1234-1234</td>
                             <td>ws@gmail.com</td>
                             <td>2022-08-08</td>
@@ -123,6 +211,7 @@ li a:hover:not(.active) {
                             <td><input type='radio' class='radio'></td>
                             <td>2</td>
                             <td>한아름</td>
+                            <td>Hyeflower</td>
                             <td>010-5678-5678</td>
                             <td>sh@gmail.com</td>
                             <td>2022-08-09</td>
@@ -165,7 +254,7 @@ li a:hover:not(.active) {
             </div>
             <div class='modal-footer'>          
                 <button type='button' class='btn btn-secondary' data-dismiss='modal'>아니오</button>      
-                <a href="#" class="btn btn-danger" data-dismiss='modal'
+                <a href="#infoModal" class="btn btn-danger" data-dismiss='modal'
                         data-target="#infoModal" data-toggle='modal'>확인</a>
             </div>
         </div>
@@ -182,7 +271,9 @@ li a:hover:not(.active) {
             </div>
             <div class="modal-body text-center">
                 <p>탈퇴가 완료되었습니다.</p>
-                <a href="#" class="btn btn-success btn-lg col-12" data-dismiss="modal">                
+            </div>
+            <div class='modal-footer'>
+                <a href="#" class="btn btn-primary btn-lg col-12" data-dismiss="modal">                
                     확인
                 </a>
             </div>
