@@ -6,12 +6,12 @@
         $('#users').empty()
 
         if(users.length) {
-            const userArr = [] //rendering을 위해서 배열을선언
+            const userArr = []
 
             $.each(users, (i, user) => {
-                userArr.unshift(//내림차순
+                userArr.unshift(
                     `<tr>                        
-                        <td><input type='radio' name='laborerId' id='laborerId'
+                        <td><input type='radio' name='userId' id='userId'
                                 value='${user.userId}'/></td>                        
                         <td>${user.userId}</td>
                         <td>${user.userName}</td>
@@ -33,41 +33,46 @@
         //수정
         $('#fixBtn').click(() => {
             if(isVal($('#userId:checked')) &&
-                isVal($('#laborerName')) && isVal($('#hireDate'))) {
-                    let laborerId = $('#laborerId:checked').val()
+                isVal($('#userName')) && isVal($('#nickName'))
+                        && isVal($('#userTel')) && isVal($('#userEmail'))
+                        && isVal($('#userBirth'))) {
+                    let userId = $('#userId:checked').val()
 
-                    $.each(laborers, (i, laborer) => {
-                        if(laborer.laborerId == laborerId) {
-                            laborer.name = $('#laborerName').val()
-                            laborer.hireDate = $('#hireDate').val()
+                    $.each(users, (i, user) => {
+                        if(user.userId == userId) {
+                            user.name = $('#userName').val()
+                            user.nickName = $('#userNick').val()
+                            user.cellPhone = $('#userTel').val()
+                            user.email = $('#userEmail').val()
+                            user.birth = $('#userBirth').val()
                             return false
                         }
                     })
-                    listLaborers()
+                    listUsers()
             }
         })
 
-        //삭제
+        //탈퇴
         $('#delBtn').click(() => {
-            if(isVal($('#laborerId:checked'))){
-                $('#modalMsg').text('노동자를 삭제하시겠습니까?')
+            if(isVal($('#userId:checked'))){
+                $('#modalMsg').text('회원을 탈퇴 시겠습니까?')
                 $('#modalBtn').show()
                 $('#modal').modal()
             }
         })
 
-        $('#delLaborerOkBtn').click(() => {
-            let laborerId = $('#laborerId:checked').val()
+        $('#delOkBtn').click(() => {
+            let laborerId = $('#userId:checked').val()
 
-            $.each(laborers, (i, laborer) => {
-                if(laborer.laborerId == laborerId) {
-                    laborers.splice(i, 1)
+            $.each(users, (i, user) => {
+                if(user.userId == userId) {
+                    user.splice(i, 1)
                     return false
                 }
             })
 
             $('#modal').modal('hide')
-            listLaborers()
+            listUsers()
         })
 
         $('#users').on({
@@ -78,7 +83,7 @@
                 $('#userEmail').val($(this).parent().siblings().eq(5).text()) 
                 $('#userBirth').val($(this).parent().siblings().eq(6).text())                
             }
-        })
+        }, '#userId')
     }
 
     $(init)
@@ -139,11 +144,11 @@ li a:hover:not(.active) {
     <hr>
     <div class='row'>  
         <div class='col-2'>          
-            <ul class="text-center">                   
-                <li><a href="../Admin/Main.html">회원 조회</a></li>
-                <li><a href="../Admin/Declaration.html">신고 조회</a></li>
-                <li><a href="../Admin/Review/01.html">리뷰 조회</a></li>
-                <li><a href="../Admin/Place/01.html">장소 조회</a></li>                
+            <ul class='text-center'>                   
+                <li><a href='../Admin/Main.html'>회원 조회</a></li>
+                <li><a href='../Admin/Declaration.html'>신고 조회</a></li>
+                <li><a href='../Admin/Review/01.html'>리뷰 조회</a></li>
+                <li><a href='../Admin/Place/01.html'>장소 조회</a></li>                
             </ul>     
         </div>
         <div class='col'>  
@@ -154,7 +159,8 @@ li a:hover:not(.active) {
                     </div>                        
                     <div class='col mb-2'>
                         <div class='button'>
-                            <button type='button' class='btn btn-primary col-3 mr-4'>
+                            <button id='getUserBtn' type='button' class='btn btn-primary col-3 mr-4'
+                                    data-toggle='modal' data-target='#fixModal'>
                                조회
                             </button>
                             <button id='fixBtn' type='button' class='btn btn-warning col-3 mr-4'
@@ -199,7 +205,7 @@ li a:hover:not(.active) {
                     </thead>
                     <tbody id='users'>
                         <tr>
-                            <td><input type='radio' class='radio'></td>
+                            <td><input type='radio' class='radio' value='1'></td>
                             <td>1</td>
                             <td>최한석</td>
                             <td>하루000</td>
@@ -223,7 +229,7 @@ li a:hover:not(.active) {
     </div>               
 </div>
 
-<div class='modal' tabindex='-1' id='fixModal'>
+<div class='modal' tabindex='-1' id='modal'>
     <div class='modal-dialog'>
         <div class='modal-content'>
             <div class='modal-header'>
@@ -232,52 +238,13 @@ li a:hover:not(.active) {
                 </button>
             </div>
             <div class='modal-body text-center'>
-                <p>수정 되었습니다.</p>
+                <p id='modalMsg'></p>
             </div>
-            <div class='modal-footer'>                
-                <a href="#" class="btn btn-primary btn-lg col-12" data-dismiss='modal'>확인</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class='modal' tabindex='-1' id='delModal'>
-    <div class='modal-dialog'>
-        <div class='modal-content'>
-            <div class='modal-header'>
-                <button type='button' class='close' data-dismiss='modal'>
-                    <span>&times;</span>
-                </button>
-            </div>
-            <div class='modal-body text-center'>
-                <p>회원을 정말 탈퇴시키겠습니까?</p>
-            </div>
-            <div class='modal-footer'>          
-                <button type='button' class='btn btn-secondary' data-dismiss='modal'>아니오</button>      
-                <a href="#infoModal" class="btn btn-danger" data-dismiss='modal'
-                        data-target="#infoModal" data-toggle='modal'>확인</a>
+            <div class='modal-footer' id='modalBtn'>          
+                <button type='button' class='btn btn-secondary' data-dismiss='modal'>아니오</button>
+                <button type='button' class='btn btn-primary' id='delOkBtn'>예</button>
             </div>
         </div>
     </div>
 </div>
-
-<div class="modal" id="infoModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class='modal-header'>
-                <button type='button' class='close' data-dismiss='modal'>
-                    <span>&times;</span>
-                </button>
-            </div>
-            <div class="modal-body text-center">
-                <p>탈퇴가 완료되었습니다.</p>
-            </div>
-            <div class='modal-footer'>
-                <a href="#" class="btn btn-primary btn-lg col-12" data-dismiss="modal">                
-                    확인
-                </a>
-            </div>
-        </div>
-    </div>
-</div>     
 <body>
