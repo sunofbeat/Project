@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>adminMain</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    </head>
+    <style>
+        header {
+            padding: 1.7rem;
+        }
+
+        hr {
+            margin: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+            height: calc(100vh - 116px);
+        }
+
+        li a {
+            display: block;
+            color: #000;
+            padding: 2rem 2rem;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+
+        .reportDate::before {
+            content: attr(placeholder);
+            color: gray;
+            width: 100%;
+        }
+
+        .reportDate:focus::before,
+        .reportDate:valid::before {
+            display: none;
+        }
+
+        .content {
+            margin-top: 40px;
+        }
+    </style>
+    <body>
+        <div class="container-fluid">
+            <header class="row-1">
+                <h1 class="text-center">로고 이미지</h1>
+            </header>
+            <hr />
+            <div class="row">
+                <div class="col-2">
+                    <ul class="text-center">
+                        <li><a href="../main.html">회원 조회</a></li>
+                        <li><a href="../declaration/01.html">신고 조회</a></li>
+                        <li><a href="../review/01.html">리뷰 조회</a></li>
+                        <li><a href="../place/01.html">장소 조회</a></li>
+                    </ul>
+                </div>
+                <div class="col content">
+                    <div class="row">
+                        <div class="col-5">
+                            <h3>리뷰 조회</h3>
+                        </div>
+                        <div class="col-7">
+                            <nav class="d-flex justify-content-end mt-4 mb-3">
+                                <div class="col-5">
+                                    <input type="text" class="form-control" placeholder="회원ID" id="memberName" />
+                                </div>
+                                <div class="col-5">
+                                    <input type="date" class="form-control reportDate" placeholder="등록일" required />
+                                </div>
+                                <button type="button" class="col-2 btn btn-info mr-2">
+                                    <span class="label text-center">조회</span>
+                                </button>
+                            </nav>
+                        </div>
+                    </div>
+                    <table class="table mx-1">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="col-4 text-center">No.</th>
+                                <th class="col-4 text-center">장소</th>
+                                <th class="col-4 text-center">등록일</th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <div>
+                        <div
+                            type="button"
+                            class="row accordion text-center border-bottom mx-1 py-3"
+                            style="font-size: 14px"
+                            id="acco1"
+                            data-toggle="collapse"
+                            data-target="#coll1"
+                            aria-expanded="true"
+                            aria-controls="coll1"
+                        >
+                            <div class="col">1</div>
+                            <div class="col">우지커피</div>
+                            <div class="col">2022-10-12</div>
+                        </div>
+                        <div id="coll1" class="collapse" aria-labelledby="hea1" data-parent="#acco1">
+                            <div class="row">
+                                <div class="col mx-1">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <button type="button" id="deleteBtn" class="btn btn-primary" style="float: right" data-toggle="modal" data-target="#deleteModal">삭제</button>
+                                            <div class="row text-start ml-1 mr-1">
+                                                <i class="icon bi-person-circle fa-3x mb-2" style="font-size: 20px"></i>
+                                                <p class="mt-1 ml-2">User1</p>
+                                                <p class="mt-1 ml-2" style="color: #fb3959">★★★★★</p>
+                                                <p class="mt-2 ml-2" style="font-size: 13px">22-10-12</p>
+                                                <p class="mt-1 ml-4">장소: 우지커피</p>
+                                            </div>
+                                            <p class="col card-text mt-3">커피가 가격대비 맛있고 커플끼리 오기 너무 좋은 분위기예요ㅎㅎ</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div
+                                type="button"
+                                class="row accordion text-center border-bottom mx-1 py-3"
+                                style="font-size: 14px"
+                                id="acco1"
+                                data-toggle="collapse"
+                                data-target="#coll2"
+                                aria-expanded="true"
+                                aria-controls="coll2"
+                            >
+                                <div class="col">2</div>
+                                <div class="col">서울밥집</div>
+                                <div class="col">2022-10-12</div>
+                            </div>
+                            <div id="coll2" class="collapse" aria-labelledby="hea1" data-parent="#acco1">
+                                <div class="row">
+                                    <div class="col mx-1">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <button type="button" id="deleteBtn" class="btn btn-primary" style="float: right" data-toggle="modal" data-target="#deleteModal">삭제</button>
+                                                <div class="row text-start ml-1 mr-1">
+                                                    <i class="icon bi-person-circle fa-3x mb-2" style="font-size: 20px"></i>
+                                                    <p class="mt-1 ml-2">기린맨</p>
+                                                    <p class="mt-1 ml-2" style="color: #fb3959">★★★★★</p>
+                                                    <p class="mt-2 ml-2" style="font-size: 13px">22-10-12</p>
+                                                    <p class="mt-1 ml-4">장소: 서울밥집</p>
+                                                </div>
+                                                <p class="col card-text mt-3">저렴한 가격에 푸짐한 볶음밥이네요!!!!!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal" tabindex="-1" id="addMenuOkModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header"></div>
+                            <div class="modal-body">
+                                <p class="text-center" style="font-size: 20px"><b>메뉴 추가가완료되었습니다.</b></p>
+                            </div>
+                            <div class="modal-footer" style="display: flex; justify-content: center">
+                                <button type="button" class="btn btn-secondary col-4" style="display: inline-block" data-dismiss="modal">확인</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal" id="deleteModal" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content mx-5">
+                            <div class="modal-body text-center py-3">
+                                <hr />
+                                <p>삭제하시겠습니까?</p>
+                                <hr />
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                                <a href="#infoModal" class="btn btn-primary" data-toggle="modal" data-target="#infoModal" data-dismiss="modal">확인 </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal" id="infoModal" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content mx-5">
+                            <div class="modal-body text-center py-3">
+                                <hr />
+                                <p>삭제가 완료되었습니다.</p>
+                                <hr />
+                                <a href="#" class="btn btn-primary" data-dismiss="modal"> 확인 </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <body></body>
+            </div>
+        </div>
+    </body>
+</html>

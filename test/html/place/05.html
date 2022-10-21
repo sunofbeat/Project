@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>데이트</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
+        <style>
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                font-family: 'Noto Sans KR', sans-serif;
+            }
+
+            .word-keep {
+                word-break: keep-all;
+            }
+
+            .mt-80 {
+                margin-top: 80px;
+            }
+
+            .bi {
+                font-size: 16px;
+            }
+
+            .icon {
+                font-size: 24px;
+            }
+
+            .list-style-none {
+                list-style: none;
+            }
+
+            .font-gamja-flower {
+                font-family: 'Gamja Flower', cursive;
+                font-size: 2rem;
+            }
+
+            /* kakao map css */
+            .wrap {
+                position: absolute;
+                left: 0;
+                bottom: 37px;
+                width: 310px;
+                height: 132px;
+                margin-left: -144px;
+                text-align: left;
+                overflow: visible;
+                font-size: 12px;
+                font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+                line-height: 1.5;
+            }
+            .wrap * {
+                padding: 0;
+                margin: 0;
+            }
+            .wrap .info {
+                width: 280px;
+                height: 120px;
+                border-radius: 5px;
+                border-bottom: 0px solid #ccc;
+                border-right: 0px solid #ccc;
+                overflow: visible;
+                background: #fff;
+            }
+            .wrap .info:nth-child(1) {
+                border: 0;
+                box-shadow: 0px 1px 2px #888;
+            }
+            .info .title {
+                padding: 5px 0 0 10px;
+                height: 35px;
+                background: #eee;
+                border-bottom: 1px solid #ddd;
+                font-size: 18px;
+                font-weight: bold;
+            }
+            .info .close {
+                position: relative;
+                top: 4px;
+                right: 10px;
+                color: #888;
+                width: 17px;
+                height: 17px;
+                background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+            }
+            .info .close:hover {
+                cursor: pointer;
+            }
+            .info .body {
+                position: relative;
+                overflow: visible;
+            }
+
+            .info .desc {
+                position: relative;
+                margin: 13px 0 0 90px;
+                height: 75px;
+            }
+            .desc .ellipsis {
+                overflow: visible;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .desc .jibun {
+                font-size: 11px;
+                color: #888;
+                margin-top: -2px;
+            }
+            .info .img {
+                position: absolute;
+                top: 6px;
+                left: 5px;
+                width: 73px;
+                height: 71px;
+                border: 1px solid #ddd;
+                color: #888;
+                overflow: visible;
+            }
+            .info:after {
+                content: '';
+                position: absolute;
+                margin-left: -20px;
+                left: 50%;
+                bottom: 0;
+                width: 22px;
+                height: 12px;
+                background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png');
+            }
+            .info .link {
+                color: #5085bb;
+            }
+        </style>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1ae0f4d8a7c4511de8de27cd0e165da0&libraries=services,clusterer,drawing"></script>
+        <script>
+            var map;
+            var overlays = [];
+
+            var addrs = [
+                { name: '메가커피', addr: '서울 관악구 남부순환로 1617' },
+                { name: '우지커피', addr: '서울 관악구 신림로 344 SK허브그린' },
+                { name: '명동피자', addr: '서울 관악구 신림로63길 7' },
+            ];
+
+            async function init() {
+                await getMap();
+
+                for (let i = 0; i < addrs.length; i++) {
+                    getXY(addrs[i]);
+                }
+            }
+            function getXY(obj) {
+                console.log(map);
+                var geocoder = new kakao.maps.services.Geocoder();
+
+                geocoder.addressSearch(obj.addr, (result, status) => {
+                    if (status === kakao.maps.services.Status.OK) {
+                        getCustomOverlay(obj.name, obj.addr, result[0]);
+                    }
+                });
+            }
+
+            function getCustomOverlay(title, addr, position) {
+                console.log(title, addr, position);
+                // 지도에 마커를 표시합니다
+                var marker = new kakao.maps.Marker({
+                    map: map,
+                    position: new kakao.maps.LatLng(position.y, position.x),
+                });
+
+                // 커스텀 오버레이에 표시할 컨텐츠 입니다
+                // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
+                // 별도의 이벤트 메소드를 제공하지 않습니다
+                var content = `<div class="wrap">
+                                    <div class="info">
+                                        <div class="title">
+                                            ${title} 
+                                        <div class="close" onclick="closeOverlay(${position.x}, ${position.y})" title="닫기"></div>
+                                        <div class="infoBody mt-2" style='font-size:14px;'>                                    
+                                            ${addr}
+                                        </div>
+                                        <div class='infoFooter mt-4'>
+                                            <a href="https://map.kakao.com/link/map/${title},${position.y},${position.x}" class='btn btn-primary' style="color:white" target="_self"><i class="bi bi-geo-alt-fill"></i>큰지도보기</a> 
+                                            <a href="https://map.kakao.com/link/to/${title},${position.y},${position.x}" class='btn btn-primary' style="color:white" target="_self"><i class="bi bi-arrow-90deg-right"></i>길찾기</a>                                                                            
+                                        </div>
+                                    </div>
+                                </div>`;
+
+                // 마커 위에 커스텀오버레이를 표시합니다
+                // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+                var overlay = new kakao.maps.CustomOverlay({
+                    content: content,
+                    map: map,
+                    position: marker.getPosition(),
+                });
+
+                overlay.id = position;
+
+                overlays.push(overlay);
+
+                // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+                kakao.maps.event.addListener(marker, 'click', function () {
+                    overlay.setMap(map);
+                });
+            }
+
+            // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
+            function closeOverlay(x, y) {
+                console.log(x, y);
+                overlays.map((overlay) => {
+                    if (overlay.id.x == x && overlay.id.y == y) {
+                        overlay.setMap(null);
+                    }
+                });
+            }
+
+            async function getMap() {
+                var mapContainer = await document.getElementById('map'), // 지도를 표시할 div
+                    mapOption = {
+                        center: new kakao.maps.LatLng(37.48457, 126.93028), // 지도의 중심좌표
+                        level: 3, // 지도의 확대 레벨
+                    };
+
+                map = await new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+            }
+
+            $().ready(init);
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <nav class="row navbar bg-light text-center align-middle fixed-top">
+                    <a href="javascript:window.history.back();" class="col btn"><i class="bi bi-chevron-left"></i></a>
+                    <p class="col"></p>
+                    <h3 class="col-6 font-gamja-flower">주변 조회</h3>
+                    <p class="col"></p>
+                    <p class="col"></p>
+                </nav>
+            </header>
+            <div class="row" style="padding-top: 62px">
+                <div id="map" class="col" style="height: calc(100vh - 124px)"></div>
+            </div>
+            <div class="navbar">
+                <ul class="navbar nav-item bg-light fixed-bottom mb-0 list-style-none">
+                    <li>
+                        <a href="../main.html" class="btn w-auto" type="button">
+                            <i class="icon bi-house-door-fill fa-3x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../community/01.html" class="btn w-auto" type="button">
+                            <i class="icon bi-file-earmark-text fa-3x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./05.html" class="btn w-auto" type="button">
+                            <i class="icon bi-map fa-3x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./06.html" class="btn w-auto" type="button">
+                            <i class="icon bi-heart fa-3x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../user/02.html" class="btn w-auto" type="button">
+                            <i class="icon bi-person-circle fa-3x"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

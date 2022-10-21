@@ -39,9 +39,8 @@
             color: white;
         }
 
-        #col1 {
-            width: 100;
-            height: 50;
+        .content {
+            margin-top: 40px;
         }
     </style>
     <body>
@@ -49,8 +48,8 @@
             <header class="row-1">
                 <div>
                     <h1 class="text-center">LOGO IMG</h1>
-               
-                    <a href='../Admin/User/01.html' class='float-right' style='color:black;'>로그인</a>
+
+                    <a href="../Admin/User/01.html" class="float-right" style="color: black">로그인</a>
                 </div>
             </header>
             <hr />
@@ -63,29 +62,20 @@
                         <li><a href="./place/01.html">장소 조회</a></li>
                     </ul>
                 </div>
-                <div class="col">
+                <div class="col content">
                     <form>
-                        <div class='row mb-2'>
-                            <div class='col'>
-                                <input id='inputText' type='text' class='form-control col-10' placeholder='회원이름'/>
-                            </div>                   
-                            <div class='col'>
-                                <button id='getUserBtn' type='button' class='btn btn-primary btn-block mr-4'
-                                        data-toggle='modal' data-target='#fixModal'>
-                                    조회
-                                </button>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <input id="inputText" type="text" class="form-control col-10" placeholder="회원이름" />
                             </div>
-                            <div class='col'>
-                                <button id='fixBtn' type='button' class='btn btn-warning btn-block mr-4'
-                                        data-toggle='modal' data-target='#fixModal'>
-                                    선택 수정
-                                </button>
+                            <div class="col">
+                                <button id="getUserBtn" type="button" class="btn btn-primary btn-block mr-4">조회</button>
                             </div>
-                            <div class='col'>                                
-                                <button id='delBtn' type='button' class='btn btn-danger btn-block '
-                                        data-toggle='modal' data-target='#delModal'>
-                                    선택 탈퇴
-                                </button>
+                            <div class="col">
+                                <button id="fixBtn" type="button" class="btn btn-warning btn-block mr-4" data-toggle="modal" data-target="#fixModal">선택 수정</button>
+                            </div>
+                            <div class="col">
+                                <button id="delBtn" type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#delModal">선택 탈퇴</button>
                             </div>
                         </div>
                         <div class="row">
@@ -197,6 +187,5 @@
                 </div>
             </div>
         </div>
-        <body></body>
     </body>
 </html>

@@ -1,0 +1,252 @@
+<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+<script>
+
+    function listUsers() {
+        $('input').not(':radio').val('')
+        $('#users').empty()
+
+        if(users.length) {
+            const userArr = []
+
+            $.each(users, (i, user) => {
+                userArr.unshift(
+                    `<tr>                        
+                        <td><input type='radio' name='userId' id='userId'
+                                value='${user.userId}'/></td>                        
+                        <td>${user.userId}</td>
+                        <td>${user.userName}</td>
+                        <td>${user.userNick}</td>
+                        <td>${user.userTel}</td>
+                        <td>${user.userEmail}</td>
+                        <td>${user.userBirth}</td>
+                    </tr>`
+                )     
+            })
+
+            $('#users').append(userArr.join(''))
+                    
+        } else $('#users').append(
+            '<tr><td colspan=4 class=text-center>회원이 없습니다.</td></tr>')
+    }
+
+    function init() {
+        //수정
+        $('#fixBtn').click(() => {
+            if(isVal($('#userId:checked')) &&
+                isVal($('#userName')) && isVal($('#nickName'))
+                        && isVal($('#userTel')) && isVal($('#userEmail'))
+                        && isVal($('#userBirth'))) {
+                    let userId = $('#userId:checked').val()
+
+                    $.each(users, (i, user) => {
+                        if(user.userId == userId) {
+                            user.name = $('#userName').val()
+                            user.nickName = $('#userNick').val()
+                            user.cellPhone = $('#userTel').val()
+                            user.email = $('#userEmail').val()
+                            user.birth = $('#userBirth').val()
+                            return false
+                        }
+                    })
+                    listUsers()
+            }
+        })
+
+        //탈퇴
+        $('#delBtn').click(() => {
+            if(isVal($('#userId:checked'))){
+                $('#modalMsg').text('회원을 탈퇴 시겠습니까?')
+                $('#modalBtn').show()
+                $('#modal').modal()
+            }
+        })
+
+        $('#delOkBtn').click(() => {
+            let laborerId = $('#userId:checked').val()
+
+            $.each(users, (i, user) => {
+                if(user.userId == userId) {
+                    user.splice(i, 1)
+                    return false
+                }
+            })
+
+            $('#modal').modal('hide')
+            listUsers()
+        })
+
+        $('#users').on({
+            change() {
+                $('#userName').val($(this).parent().siblings().eq(2).text())
+                $('#userNick').val($(this).parent().siblings().eq(3).text())
+                $('#userTel').val($(this).parent().siblings().eq(4).text())
+                $('#userEmail').val($(this).parent().siblings().eq(5).text()) 
+                $('#userBirth').val($(this).parent().siblings().eq(6).text())                
+            }
+        }, '#userId')
+    }
+
+    $(init)
+
+</script>
+<head>
+<title>DateAdmin</title>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js'></script>
+<link rel='stylesheet' href='http://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'/>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.6.3/css/all.css'/>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css'/>
+</head>
+<style>
+
+header {
+    padding: 1.7rem;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 15%;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+
+li a {
+    display: block;
+    color: #000;
+    margin: 1rem;
+    padding: 1.5rem 1.5rem;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+#col1 {
+    width: 100;
+    height: 50;
+}
+
+</style>
+<body>
+<div class='container-fluid'>
+    <header class='row-1'>          
+        <h1 class='text-center'>LOGO IMG</h1>           
+    </header>
+    <hr>
+    <div class='row'>  
+        <div class='col-2'>          
+            <ul class='text-center'>                   
+                <li><a href='../Admin/Main.html'>회원 조회</a></li>
+                <li><a href='../Admin/Declaration.html'>신고 조회</a></li>
+                <li><a href='../Admin/Review/01.html'>리뷰 조회</a></li>
+                <li><a href='../Admin/Place/01.html'>장소 조회</a></li>                
+            </ul>     
+        </div>
+        <div class='col'>  
+            <form>
+                <div class='row mb-2'>
+                    <div class='col'>
+                        <input id='inputText' type='text' class='form-control col-10' placeholder='회원이름'/>
+                    </div>                   
+                    <div class='col'>
+                        <button id='getUserBtn' type='button' class='btn btn-primary btn-block mr-4'
+                                data-toggle='modal' data-target='#fixModal'>
+                            조회
+                        </button>
+                    </div>
+                    <div class='col'>
+                        <button id='fixBtn' type='button' class='btn btn-warning btn-block mr-4'
+                                data-toggle='modal' data-target='#fixModal'>
+                            선택 수정
+                        </button>
+                    </div>
+                    <div class='col'>
+                        <button id='delBtn' type='button' class='btn btn-danger btn-block '
+                                data-toggle='modal' data-target='#delModal'>
+                            선택 탈퇴
+                        </button>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col'>
+                        <input id='userName' type='text' class='form-control' placeholder='이름'/>
+                    </div>
+                    <div class='col'>
+                        <input id='userNick' type='text' class='form-control' placeholder='닉네임'/>
+                    </div>
+                    <div class='col'>
+                        <input id='userTel' type='tel' class='form-control' placeholder='전화번호'/>
+                    </div>
+                    <div class='col'>                            
+                        <input id='userEmail' type='email' class='form-control' placeholder='이메일'/>
+                    </div>
+                    <div class='col'>
+                        <input id='userBirth' type='datetime' class='form-control' placeholder='생년월일'/>
+                    </div>      
+                </div>       
+                <table class='table mt-3'>
+                    <thead class='thead-light'>
+                        <tr>
+                            <th></th>
+                            <th>번호</th>
+                            <th>이름</th>
+                            <th>닉네임</th>
+                            <th>전화번호</th>
+                            <th>이메일</th>
+                            <th>생년월일</th>
+                        </tr>
+                    </thead>
+                    <tbody id='users'>
+                        <tr>
+                            <td><input type='radio' class='radio' value='1'></td>
+                            <td>1</td>
+                            <td>최한석</td>
+                            <td>하루000</td>
+                            <td>010-1234-1234</td>
+                            <td>ws@gmail.com</td>
+                            <td>2022-08-08</td>
+                        </tr>
+                        <tr>
+                            <td><input type='radio' class='radio'></td>
+                            <td>2</td>
+                            <td>한아름</td>
+                            <td>Hyeflower</td>
+                            <td>010-5678-5678</td>
+                            <td>sh@gmail.com</td>
+                            <td>2022-08-09</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>               
+</div>
+
+<div class='modal' tabindex='-1' id='modal'>
+    <div class='modal-dialog'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal'>
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body text-center'>
+                <p id='modalMsg'></p>
+            </div>
+            <div class='modal-footer' id='modalBtn'>          
+                <button type='button' class='btn btn-secondary' data-dismiss='modal'>아니오</button>
+                <button type='button' class='btn btn-primary' id='delOkBtn'>예</button>
+            </div>
+        </div>
+    </div>
+</div>
+<body>

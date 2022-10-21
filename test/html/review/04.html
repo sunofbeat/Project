@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>데이트</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
+        <style>
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                font-family: 'Noto Sans KR', sans-serif;
+            }
+
+            .myReviewImg {
+                height: 6rem;
+                width: 9rem;
+                border: 0.1rem solid;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 0.5rem;
+                font-size: 15px;
+            }
+
+            .word-keep {
+                word-break: keep-all;
+            }
+
+            .mt-80 {
+                margin-top: 80px;
+            }
+            .mb-80 {
+                margin-bottom: 80px;
+            }
+
+            .bi {
+                font-size: 16px;
+            }
+
+            .icon {
+                font-size: 24px;
+            }
+
+            .list-style-none {
+                list-style: none;
+            }
+
+            .font-gamja-flower {
+                font-family: 'Gamja Flower', cursive;
+                font-size: 2rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header style="padding-bottom: 100px">
+                <nav class="row navbar bg-light text-center align-middle fixed-top">
+                    <a href="javascript:window.history.back();" class="col btn"><i class="bi bi-chevron-left"></i></a>
+                    <p class="col"></p>
+                    <h3 class="col-6 font-gamja-flower">나의 리뷰</h3>
+                    <p class="col"></p>
+                    <p class="col"></p>
+                </nav>
+            </header>
+            <div class="pb-5 mb-3">
+                <table class="col">
+                    <thead>
+                        <tr>
+                            <td class="row-1 mt-5 border rounded mb-3">
+                                <div class="col pt-1">
+                                    <div class="row text-start ml-1">
+                                        <i class="icon bi-person-circle fa-3x mb-2" style="font-size: 20px"></i>
+                                        <p class="mt-1 ml-1" style="font-size: 13px">성시경</p>
+                                        <p class="mt-1 ml-1" style="color: #fb3959; font-size: 13px">★★★★★</p>
+                                        <p class="mt-2 ml-1" style="font-size: 13px">22-10-12</p>
+                                        <p class="mt-2 ml-4 mr-2" style="font-size: 11px">방문장소: 그림화원</p>
+                                    </div>
+                                    <div class="row text-start ml-1 mr-1" style="font-size: 14px">
+                                        <p>장소가 너무 이뻐요~ 강추합니다!!!!!</p>
+                                    </div>
+                                    <div class="row reviewImg mb-2">
+                                        <div class="myReviewImg ml-3">리뷰이미지1</div>
+                                        <div class="myReviewImg">리뷰이미지2</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="row-1 mt-5 border rounded mb-3">
+                                <a href="./03.html" class="btn btn-outline-secondary btn-sm bg-light" style="float: right"> 상세보기 </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="col mt-5">
+                    <thead>
+                        <tr>
+                            <td class="row-1 mt-5 border rounded mb-3">
+                                <div class="col pt-1">
+                                    <div class="row text-start ml-1">
+                                        <i class="icon bi-person-circle fa-3x mb-2" style="font-size: 20px"></i>
+                                        <p class="mt-1 ml-1" style="font-size: 13px">성시경</p>
+                                        <p class="mt-1 ml-1" style="color: #fb3959; font-size: 13px">★★★★★</p>
+                                        <p class="mt-2 ml-1" style="font-size: 13px">22-10-12</p>
+                                        <p class="mt-2 ml-4 mr-2" style="font-size: 11px">방문장소: 롯데월드</p>
+                                    </div>
+                                    <div class="row text-start ml-1 mr-1" style="font-size: 14px">
+                                        <p>놀이기구 너무 많고 실내에도 있어서 너무 좋아요!!</p>
+                                    </div>
+                                    <div class="row reviewImg mb-2">
+                                        <div class="myReviewImg ml-3">리뷰이미지1</div>
+                                        <div class="myReviewImg">리뷰이미지2</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="row-1 mt-5 border rounded mb-3">
+                                <a href="./03.html" class="btn btn-outline-secondary btn-sm bg-light" style="float: right"> 상세보기 </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- 하단 메뉴바 -->
+            <div class="navbar">
+                <ul class="navbar nav-item bg-light fixed-bottom mb-0 list-style-none">
+                    <li>
+                        <a href="../main.html" class="btn w-auto" type="button">
+                            <i class="icon bi-house-door-fill fa-3x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../community/01.html" class="btn w-auto" type="button">
+                            <i class="icon bi-file-earmark-text fa-3x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../place/05.html" class="btn w-auto" type="button">
+                            <i class="icon bi-map fa-3x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../place/06.html" class="btn w-auto" type="button">
+                            <i class="icon bi-heart fa-3x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../user/02.html" class="btn w-auto" type="button">
+                            <i class="icon bi-person-circle fa-3x"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

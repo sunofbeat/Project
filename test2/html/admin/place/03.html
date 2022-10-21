@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>데이트</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
+        <style>
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                font-family: 'Noto Sans KR', sans-serif;
+            }
+
+            .word-keep {
+                word-break: keep-all;
+            }
+
+            .mt-80 {
+                margin-top: 80px;
+            }
+
+            .bi {
+                font-size: 16px;
+            }
+
+            .icon {
+                font-size: 24px;
+            }
+
+            .list-style-none {
+                list-style: none;
+            }
+
+            .font-gamja-flower {
+                font-family: 'Gamja Flower', cursive;
+                font-size: 2rem;
+            }
+
+            .text-12 {
+                font-size: 12px;
+            }
+            textarea {
+                width: 100%;
+                height: 8rem;
+                resize: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <nav class="row navbar bg-light text-center align-middle">
+                    <a href="javascript:window.history.back();" class="col btn"><i class="bi bi-chevron-left"></i></a>
+                    <p class="col"></p>
+                    <h3 class="col-6 font-gamja-flower">신고</h3>
+                    <p class="col"></p>
+                    <p class="col"></p>
+                </nav>
+            </header>
+            <div class="pb-5 mb-3">
+                <form class="form row mx-3 mt-3">
+                    <h3 class="col-12 mb-4 p-0">장소명 : 우지커피</h3>
+                    <h5 class="col-12 mb-3 p-0">신고 내용</h5>
+                    <!-- <div class="row text-black-50 mb-2 text-12">내용 입력*</div> -->
+                    <textarea class="col-12 w-100 border border-secondary rounded text-12 mb-3" placeholder="신고하실 내용을 입력해주세요."></textarea>
+                    <div class="text-12 col-12 p-0">안내사항<br /></div>
+                    <p class="text-12 col-12 p-0">
+                        - 신고는 24시간 가능하며, 순차적으로 확인합니다.
+                        <br />가게와 무관하거나 불법적인 내용은 통보없이 삭제될 수 있습니다.
+                    </p>
+                    <button type="button" class="btn btn-primary btn-lg col-12" data-toggle="modal" data-target="#declarationModal">신고하기</button>
+                </form>
+            </div>
+            <div class="navbar">
+                <ul class="navbar nav-item bg-light fixed-bottom mb-0 list-style-none">
+                    <li>
+                        <a href="../main.html" class="btn w-auto" type="button">
+                            <i class="icon bi-house-door-fill fa-3x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../community/01.html" class="btn w-auto" type="button">
+                            <i class="icon bi-file-earmark-text fa-3x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./05.html" class="btn w-auto" type="button">
+                            <i class="icon bi-map fa-3x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./06.html" class="btn w-auto" type="button">
+                            <i class="icon bi-heart fa-3x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../user/02.html" class="btn w-auto" type="button">
+                            <i class="icon bi-person-circle fa-3x"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="modal fade" id="declarationModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content mx-5">
+                    <div class="modal-body text-center py-3">
+                        <p>신고 하시겠습니까?</p>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                        <a href="#infoModal" class="btn btn-primary" data-toggle="modal" data-target="#infoModal" data-dismiss="modal"> 확인 </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="infoModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content mx-5">
+                    <div class="modal-body text-center py-3">
+                        <p>신고가 완료되었습니다.</p>
+                        <a href="./02.html" class="btn btn-primary"> 확인 </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

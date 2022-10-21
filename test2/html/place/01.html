@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>데이트</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
+        <style>
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                font-family: 'Noto Sans KR', sans-serif;
+            }
+
+            .word-keep {
+                word-break: keep-all;
+            }
+
+            .mt-80 {
+                margin-top: 80px;
+            }
+
+            .pt-62 {
+                padding-top: 62px;
+            }
+
+            .bi {
+                font-size: 16px;
+            }
+
+            .icon {
+                font-size: 24px;
+            }
+
+            .icon.main:hover {
+                color: #ff5858;
+            }
+            
+            .list-style-none {
+                list-style: none;
+            }
+
+            .font-gamja-flower {
+                font-family: 'Gamja Flower', cursive;
+                font-size: 2rem;
+            }
+
+            .mint {
+                background-color: mediumpurple;
+            }
+
+            .heartlist {
+                display: flex;
+            }
+
+            .img-style {
+                border: 0.1rem solid;
+                position: relative;
+                width: 5rem;
+                height: 6rem;
+            }
+
+            .heart {
+                font-size: 14px;
+                position: absolute;
+                top: 80%;
+                left: 80%;
+            }
+
+            a {
+                color: black;
+                text-decoration: none !important;
+            }
+
+            a:hover {
+                color: black;
+                text-decoration: none !important;
+            }
+        </style>
+        <script>
+            function toggleBookmark() {
+                let bookmark = $('#bookmark');
+                if ($('#bookmark')[0].className == 'bi bi-bookmark-fill icon') bookmark.attr('class', 'bi bi-bookmark icon');
+                else bookmark.attr('class', 'bi bi-bookmark-fill icon');
+            }
+
+            $(() => {
+                $('#bookmark').click(() => {
+                    toggleBookmark();
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <nav class="row navbar bg-light text-center align-middle fixed-top">
+                    <a href="javascript:window.history.back();" class="col btn"><i class="bi bi-chevron-left"></i></a>
+                    <p class="col"></p>
+                    <h3 class="col-8 font-gamja-flower">서울시 강남구<i id="bookmark" class="bi bi-bookmark-fill icon"></i></h3>
+                    <p class="col"></p>
+                    <p class="col"></p>
+                </nav>
+            </header>
+            <div class="row pt-62 mt-3">
+                <nav class="navbar nav-item bg-light text-center align-middle flex-fill">
+                    <a href="#" type="button" class="btn flex-fill mr-4 text-white mint">전체</a>
+                    <a href="#" type="button" class="btn flex-fill mr-4 text-white mint">놀거리</a>
+                    <a href="#" type="button" class="btn flex-fill mr-4 text-white mint">맛집</a>
+                    <a href="#" type="button" class="btn flex-fill text-white mint">카페</a>
+                </nav>
+            </div>
+            <div class="row justify-content-around mt-3">
+                <div class="col"></div>
+                <div class="col-3 dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">정렬</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">신규 등록순</a>
+                        <a class="dropdown-item" href="#">찜 많은순</a>
+                        <a class="dropdown-item" href="#">리뷰 많은순</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container heartlist px-0 pb-5 mb-3">
+                <ul class="boxbox col list-unstyled mt-2 border-top">
+                    <li class="row border-bottom pt-3 pb-3">
+                        <div class="img-style">
+                            <img class="img-fluid" />캔버스이미지
+                            <i class="heart bi-heart"></i>
+                        </div>
+                        <div class="col-8">
+                            <a href="./02.html">
+                                <h5>그림화원</h5>
+                                실내정원 콘셉트의 채광 좋은 루프탑 화실에서 유화, 아크릴화 작품을 완성할 수 있는 원데이 클래스
+                            </a>
+                        </div>
+                        <span>조회수 7296&nbsp;&nbsp;&nbsp;찜288</span>
+                    </li>
+                    <li class="row border-bottom pt-3 pb-3">
+                        <div class="img-style">
+                            <img class="img-fluid" />반지이미지
+                            <i class="heart bi-heart"></i>
+                        </div>
+                        <div class="col-8">
+                            <a href="./02.html">
+                                <h5>JD las 실버주얼리공방</h5>
+                                우리 커플의 반지는 우리가 직접! DIY 은반지를 만들 수 있는 은반지 공방이에요♡
+                            </a>
+                        </div>
+                        <div>조회수 42419&nbsp;&nbsp;&nbsp;찜1808</div>
+                    </li>
+                    <li class="row border-bottom pt-3 pb-3">
+                        <div class="img-style">
+                            <img class="img-fluid" />보드게임이미지
+                            <i class="heart bi-heart"></i>
+                        </div>
+                        <div class="col-8">
+                            <a href="./02.html">
+                                <h5>미르보드카페 서울대점</h5>
+                                200여 종류의 다양한 게임을 프라이빗하게 즐길 수 있는 대학동 유일 보드게임카페
+                            </a>
+                        </div>
+                        <div>조회수 10481&nbsp;&nbsp;&nbsp;찜476</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="navbar">
+                <ul class="navbar nav-item bg-light fixed-bottom mb-0 list-style-none">
+                    <li>
+                        <a href="../main.html" class="btn w-auto" type="button">
+                            <i class="icon main bi-house-door-fill fa-3x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../community/01.html" class="btn w-auto" type="button">
+                            <i class="icon main bi-file-earmark-text fa-3x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./05.html" class="btn w-auto" type="button">
+                            <i class="icon main bi-map fa-3x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./06.html" class="btn w-auto" type="button">
+                            <i class="icon main bi-heart fa-3x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../user/02.html" class="btn w-auto" type="button">
+                            <i class="icon main bi-person-circle fa-3x"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

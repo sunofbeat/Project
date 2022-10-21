@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>데이트</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+        <style>
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                font-family: 'Noto Sans KR', sans-serif;
+                overflow-x: hidden;
+            }
+
+            .word-keep {
+                word-break: keep-all;
+            }
+
+            .mt-80 {
+                margin-top: 80px;
+            }
+
+            .bi {
+                font-size: 16px;
+            }
+
+            .icon {
+                font-size: 24px;
+            }
+
+            .list-style-none {
+                list-style: none;
+            }
+
+            .font-gamja-flower {
+                font-family: 'Gamja Flower', cursive;
+                font-size: 2rem;
+            }
+
+            .img-style {
+                border: 0.1rem;
+                border-style: solid;
+                width: 50rem;
+                height: 10rem;
+            }
+
+            .border {
+                margin-top: 13rem;
+                top: 50%;
+                left: 50%;
+                border-style: solid;
+            }
+
+            .btn-lg {
+                padding: 10px 83px;
+                font-size: 15px;
+                line-height: 1.2;
+                border-radius: 5px;
+            }
+
+            .swiper {
+                width: auto;
+                height: 250px;
+                border: 0.1rem solid;
+            }
+
+            .swiper-slide {
+                text-align: center;
+                background: #fff;
+
+                /* Center slide text vertically */
+
+                display: flex;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                -webkit-justify-content: center;
+                justify-content: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                -webkit-align-items: center;
+                align-items: center;
+            }
+
+            .swiper-slide img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .menuImg {
+                width: 3.5rem;
+                height: 3.5rem;
+                border: 0.1rem solid black;
+                margin-right: 0.5rem;
+                font-size: 13px;
+                text-align: center;
+                display: flex;
+                align-items: center;
+            }
+
+            .myReviewImg {
+                height: 6rem;
+                width: 9rem;
+                border: 0.1rem solid;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 0.5rem;
+                font-size: 15px;
+            }
+
+            /* kakao map css */
+            .wrap {
+                position: absolute;
+                top: -60px;
+                left: 0;
+                bottom: 15px;
+                width: 310px;
+                height: 132px;
+                margin-left: -140px;
+                text-align: left;
+                overflow: visible;
+                font-size: 16px;
+                font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+                line-height: 1;
+            }
+
+            .wrap * {
+                padding: 0;
+                margin: 0;
+            }
+
+            .wrap .info {
+                width: 280px;
+                height: 120px;
+                border-radius: 5px;
+                border-bottom: 0px solid #ccc;
+                border-right: 0px solid #ccc;
+                overflow: visible;
+                background: #fff;
+            }
+
+            .wrap .info:nth-child(1) {
+                border: 0;
+                box-shadow: 0px 1px 2px white;
+            }
+
+            .info .title {
+                padding: 30px 0 0 10px;
+                height: 30px;
+                background: white;
+                border-bottom: 1px solid #ddd;
+                font-size: 16px;
+                font-weight: bold;
+            }
+
+            .info .body {
+                position: relative;
+                overflow: visible;
+            }
+
+            .info .desc {
+                position: relative;
+                margin: 13px 0 0 90px;
+                height: 75px;
+            }
+
+            .desc .ellipsis {
+                overflow: visible;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .desc .jibun {
+                font-size: 11px;
+                color: #888;
+                margin-top: -2px;
+            }
+
+            .info .img {
+                position: absolute;
+                top: 6px;
+                left: 5px;
+                width: 73px;
+                height: 71px;
+                border: 1px solid #ddd;
+                color: #888;
+                overflow: visible;
+            }
+
+            .info:after {
+                content: '';
+                position: absolute;
+                margin-left: -20px;
+                left: 50%;
+                bottom: 0;
+                width: 22px;
+                height: 12px;
+                background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png');
+            }
+
+            .info .link {
+                color: #5085bb;
+            }
+        </style>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1ae0f4d8a7c4511de8de27cd0e165da0&libraries=services,clusterer,drawing"></script>
+        <script>
+            //swiper 이미지 slide
+            $(() => {
+                var swiper = new Swiper('.mySwiper', {
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                });
+            });
+
+            var map;
+            var addr = {
+                name: '메가커피',
+                addr: '서울 관악구 남부순환로 1617',
+            };
+
+            async function init() {
+                await getMap();
+                getXY(addr);
+            }
+
+            function getXY(obj) {
+                console.log(map);
+                var geocoder = new kakao.maps.services.Geocoder();
+
+                geocoder.addressSearch(obj.addr, (result, status) => {
+                    if (status === kakao.maps.services.Status.OK) {
+                        var moveLatLon = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                        // 지도 중심을 부드럽게 이동시킵니다
+                        // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+                        map.panTo(moveLatLon);
+
+                        getCustomOverlay(obj.name, obj.addr, result[0]);
+                    }
+                });
+            }
+
+            function getCustomOverlay(title, addr, position) {
+                console.log(title, addr, position);
+                // 지도에 마커를 표시합니다
+                var marker = new kakao.maps.Marker({
+                    map: map,
+                    position: new kakao.maps.LatLng(position.y, position.x),
+                });
+
+                // 커스텀 오버레이에 표시할 컨텐츠 입니다
+                // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
+                // 별도의 이벤트 메소드를 제공하지 않습니다
+                var content = `<div class=" wrap">
+                                <div class="info text-center"><br><br>                               
+                                            ${addr}          
+                                        <a href='#' class='btn'>
+                                            <a href="https://map.kakao.com/link/map/${title},${position.y},${position.x}" class='btn btn-white' style="color:black" target="_self"><i class="bi bi-map"></i></a>                    
+                                        <div class="infoBody mt-2" style='font-size:14px;'>                                                                               
+                                    </div><hr class='mt-2'>
+                                    <div class='infoFooter mt-3'>                                                                               
+                                        <a href="#" class='btn btn-white' style="color:grey" target="_self"><i class="bi bi-paperclip"></i>주소 복사&nbsp;&nbsp;&nbsp;</a>                                                                               
+                                        <a href="#" class='btn btn-white' style="color:grey" target="_self"><i class="bi bi-share"></i>공유하기</a> 
+                                    </div>
+                                </div>
+                            </div>`;
+
+                // 마커 위에 커스텀오버레이를 표시합니다
+                // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+                overlay = new kakao.maps.CustomOverlay({
+                    content: content,
+                    map: map,
+                    position: marker.getPosition(),
+                });
+
+                // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+                kakao.maps.event.addListener(marker, 'click', function () {
+                    overlay.setMap(map);
+                });
+            }
+
+            // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
+            function closeOverlay() {
+                overlay.setMap(null);
+            }
+
+            async function getMap() {
+                var mapContainer = await document.getElementById('map'), // 지도를 표시할 div
+                    mapOption = {
+                        center: new kakao.maps.LatLng(37.48457, 126.93028), // 지도의 중심좌표
+                        level: 3, // 지도의 확대 레벨
+                    };
+
+                map = await new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+            }
+
+            $().ready(init);
+        </script>
+    </head>
+
+    <body>
+        <div class="container">
+            <header>
+                <nav class="row navbar white text-center align-middle">
+                    <a href="javascript:window.history.back();" class="col btn"><i class="bi bi-chevron-left"></i></a>
+                    <p class="col"></p>
+                    <h4 class="col-6 font-gamja-flower">그림화원</h4>
+                    <p class="col"></p>
+                    <a href="#" class="col btn">
+                        <i class="bi bi-share-fill"></i>
+                    </a>
+                </nav>
+            </header>
+
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">화원이미지1</div>
+                    <div class="swiper-slide">화원이미지2</div>
+                    <div class="swiper-slide">화원이미지3</div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="text-center mt-4">
+                        <h4 class="text-center">그림화원</h4>
+                    </div>
+                    <div class="text-center pl-2 pr-2 mt-6 mb-5"><br />실내 정원 콘셉트의 채광 좋은 루프탑 화실에서 유화, 아크릴화 작품을 완성할 수 있는 원데이 클래스</div>
+
+                    <h6 class="mt-3">
+                        <i class="bi bi-clock"></i>
+                        <span> 예약/문의하기 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; 01012345678 </span>
+                    </h6>
+
+                    <h6 class="mt-5">
+                        <i class="bi bi-list"></i>
+                        <span>주요 메뉴</span>
+                    </h6>
+
+                    <table class="tg" style="width: 100%; font-size: 15px">
+                        <tbody>
+                            <tr class="border-bottom border-top">
+                                <td class="col-9 pt-2 pb-2">2인 아크릴화 or 유화 원데이 클래스 평일 이용권(팝딜25%)</td>
+                                <td>60,000원</td>
+                            </tr>
+                            <tr class="border-bottom border-top">
+                                <td class="col-9 pt-2 pb-2">2인 유화 원데이 클래스</td>
+                                <td>80,000원</td>
+                            </tr>
+                            <tr class="border-bottom border-top">
+                                <td class="col-9 pt-2 pb-2">2인 아크릴화 원데이 클래스</td>
+                                <td>60,000원</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row d-flex justify-content-end mt-2 mr-2">
+                        <div class="menuImg">메뉴이미지</div>
+                        <div class="menuImg">메뉴이미지</div>
+                    </div>
+                    <h6 class="mt-5">
+                        <i class="bi bi-clock"></i>
+                        <span>영업 안내</span>
+                    </h6>
+
+                    <table class="tg" style="width: 100%; font-size: 15px">
+                        <tbody>
+                            <tr class="border-bottom border-top">
+                                <td class="col-4 text-center pt-2 pb-2">시간</td>
+                                <td class="text-center">17:30 ~ 21:30</td>
+                            </tr>
+                            <tr class="border-bottom border-top">
+                                <td class="col-4 text-center pt-2 pb-2">주차</td>
+                                <td class="text-center">불가능</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <a href="#" class="btn w-auto mt-4" type="button" style="display: block">
+                        <span>홈페이지/인스타그램 보러가기</span>
+                    </a>
+
+                    <div id="map" class="col mt-5 w-auto" style="height: 180px; margin-bottom: 30px"></div>
+                </div>
+            </div>
+            <div class="allReview pb-5 mb-3">
+                <p class="text-center">
+                    다녀온 유저 리뷰 <br />
+                    50개의 별점과 89개의 리뷰가 있어요.
+                </p>
+                <table class="col mb-3">
+                    <thead>
+                        <tr>
+                            <td class="row-1 mt-5 border rounded mb-3">
+                                <div class="col pt-1">
+                                    <div class="row text-start ml-1">
+                                        <i class="icon bi-person-circle fa-3x mb-2" style="font-size: 20px"></i>
+                                        <p class="mt-1 ml-1" style="font-size: 13px">User1</p>
+                                        <p class="mt-1 ml-1" style="color: #fb3959; font-size: 13px">★★★★★</p>
+                                        <p class="mt-2 ml-1" style="font-size: 13px">22-10-12</p>
+                                    </div>
+                                    <div class="row text-start ml-1 mr-1 mb-2" style="font-size: 14px">
+                                        <p>그림화원 진짜 채광도 좋고 너무 이쁜것같아요. 대표님도 너무 친절하시고 이쁘게 그림도 그리고 왔어요!! 한번쯤 가보시는걸 추천드려요!!</p>
+                                    </div>
+                                    <div class="row reviewImg mb-2">
+                                        <div class="myReviewImg ml-3">리뷰이미지1</div>
+                                        <div class="myReviewImg">리뷰이미지2</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="row-1 mt-5 border mb-3">
+                                <a href="../review/01.html" class="btn" style="display: block"> 리뷰 전체 보기 </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="col">
+                    <tbody>
+                        <tr>
+                            <td class="mt-5 border mb-3">
+                                <a href="./03.html" class="btn">
+                                    <i class="bi bi-exclamation-octagon mr-4"></i>
+                                    잘못된 장소 신고
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="mt-5 border mb-3">
+                                <a href="#" class="btn">
+                                    <i class="bi bi-search-heart mr-4"></i>
+                                    네이버에서 그림화원 검색
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="navbar mt-80">
+                <ul class="navbar nav-item bg-light fixed-bottom mb-0 list-style-none">
+                    <li>
+                        <a href="#" class="btn w-auto" type="button">
+                            <i class="bi bi-heart"></i>
+                            <span><br />찜 0</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <button type="button" class="btn btn-primary btn-lg disabled" data-target="#Modal" data-toggle="modal">예약하기</button>
+                        <a href="#" class="btn w-auto" type="button"> </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 모달창 -->
+        <div class="modal fade" id="Modal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content mx-5">
+                    <div class="modal-body text-center py-3">
+                        <p>예약/문의하고 싶어요!<br />그림화원</p>
+                        <a href="#infoModal" class="btn btn-primary" data-toggle="modal" data-target="#infoModal" data-dismiss="modal">전화하기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
